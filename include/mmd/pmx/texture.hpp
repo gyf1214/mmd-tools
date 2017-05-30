@@ -7,12 +7,12 @@
 namespace mmd {
     namespace pmx {
 
-        struct Texture {
+        struct MMDAPI Texture {
             std::vector<std::string> path;
 
             std::string &operator [](int index);
             const std::string &operator [](int index) const;
-            
+
             void load(Fs *fs, Header *header);
         };
 
