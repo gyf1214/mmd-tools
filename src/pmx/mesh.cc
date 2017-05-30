@@ -66,7 +66,7 @@ namespace mmd {
             for (int i = 0; i < n; ++i) {
                 vertex[i].load(fs, header);
             }
-            n = stream->readInt();
+            n = stream->readInt() / 3;
             surface.resize(n);
             for (int i = 0; i < n; ++i) {
                 surface[i].load(fs, header);
