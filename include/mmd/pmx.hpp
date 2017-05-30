@@ -6,6 +6,7 @@
 #include "pmx/mesh.hpp"
 #include "pmx/texture.hpp"
 #include "pmx/material.hpp"
+#include "pmx/bone.hpp"
 
 namespace mmd {
     namespace pmx {
@@ -15,6 +16,7 @@ namespace mmd {
             Mesh mesh;
             Texture textures;
             std::vector<Material> materials;
+            std::vector<Bone> bones;
 
             void load(Fs *fs);
         };
