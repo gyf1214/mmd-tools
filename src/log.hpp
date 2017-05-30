@@ -30,7 +30,11 @@ struct LogStream {
     }
 };
 
-#define LOG_TO(x, log, fail) LogStream(x, __FILE__, __LINE__, log, fail)
+#ifndef __FILENAME__
+#define __FILENAME__ __FILE__
+#endif
+
+#define LOG_TO(x, log, fail) LogStream(x, __FILENAME__, __LINE__, log, fail)
 
 #ifndef DEFAULT_LOG
 #define DEFAULT_LOG std::cerr
