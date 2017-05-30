@@ -3,6 +3,7 @@
 
 namespace mmd {
     namespace pmx {
+        Vertex::Vertex() {}
 
         void Vertex::load(Fs *fs, Header *header) {
             Stream *stream = (Stream *)fs;

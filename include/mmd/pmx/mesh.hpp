@@ -21,15 +21,14 @@ namespace mmd {
                 struct {
                     int bone[2];
                     float weight[2];
-                    glm::vec3 C = glm::vec3();
-                    glm::vec3 R0 = glm::vec3();
-                    glm::vec3 R1 = glm::vec3();
+                    glm::vec3 C;
+                    glm::vec3 R0;
+                    glm::vec3 R1;
                 } SDEF;
             };
             float edge;
 
-            Vertex() {}
-
+            Vertex();
             void load(Fs *fs, Header *header);
         };
 
