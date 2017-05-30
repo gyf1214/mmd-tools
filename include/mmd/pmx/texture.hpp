@@ -12,6 +12,7 @@ namespace mmd {
 
             std::string &operator [](int index);
             const std::string &operator [](int index) const;
+            int size(void) const;
 
             void load(Fs *fs, Header *header);
         };

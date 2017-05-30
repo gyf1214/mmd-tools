@@ -20,6 +20,10 @@ namespace mmd {
             LOG << "---------------------";
         }
 
+        int Texture::size() const {
+            return path.size();
+        }
+
         std::string &Texture::operator [](int index) {
             return path[index];
         }
