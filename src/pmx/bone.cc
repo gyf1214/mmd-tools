@@ -9,8 +9,8 @@ namespace mmd {
 
         void Bone::load(Fs *fs, Header *header) {
             Stream *stream = (Stream *)fs;
-            stream->skipStr();
             stream->readStr(name, header->text);
+            stream->skipStr();
             position = stream->readVec3();
             parent = stream->readIndex(header->bone);
             order = stream->readInt();

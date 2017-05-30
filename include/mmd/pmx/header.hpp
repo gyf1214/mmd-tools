@@ -7,6 +7,8 @@ namespace mmd {
     namespace pmx {
 
         struct MMDAPI Header {
+            std::string name;
+            
             char sign[4];
             float version;
             char globals;

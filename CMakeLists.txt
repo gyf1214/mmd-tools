@@ -21,6 +21,9 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DNDEBUG -fvisibility=hi
 
 add_library(${LIB_TARGET} SHARED ${SRCS})
 add_executable(${EXAMPLE_TARGET} ${EXAMPLE_SRC})
+
+find_library(ICONV_LIB iconv)
+target_link_libraries(${LIB_TARGET} ${ICONV_LIB})
 target_link_libraries(${EXAMPLE_TARGET} ${LIB_TARGET})
 
 set_target_properties(${LIB_TARGET} PROPERTIES VERSION ${LIB_VERSION} SOVERSION ${LIB_SOVERSION})

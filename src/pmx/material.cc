@@ -6,8 +6,8 @@ namespace mmd {
 
         void Material::load(Fs *fs, Header *header) {
             Stream *stream = (Stream *)fs;
-            stream->skipStr();
             stream->readStr(name, header->text);
+            stream->skipStr();
             int headerSize = (char *)(&flag) - (char *)(&diffuse.x);
             stream->read(headerSize, &diffuse.x);
 

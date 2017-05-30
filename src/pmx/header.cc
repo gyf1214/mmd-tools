@@ -14,7 +14,7 @@ namespace mmd {
             stream->read(end - sign, &this->sign[0]);
             CHECK_EQ(memcmp(this->sign, "PMX ", 4), 0) << "Invalid PMX header!";
             CHECK_EQ(globals, 8) << "Invalid PMX global count!";
-            stream->skipStr();
+            stream->readStr(name, text);
             stream->skipStr();
             stream->skipStr();
             stream->skipStr();
@@ -24,6 +24,7 @@ namespace mmd {
             LOG << "---------------------";
             LOG << "PMX version: " << version;
             LOG << "text encoding: " << (text ? "UTF8" : "UTF16");
+            LOG << "name: " << name;
             LOG << "additional uv: " << (int)additional;
             LOG << "vertex: " << (int)vertex;
             LOG << "texture: " << (int)texture;

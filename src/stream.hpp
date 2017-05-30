@@ -1,6 +1,7 @@
 #ifndef __STREAM
 #define __STREAM
 
+#include <iconv.h>
 #include "ext.hpp"
 #include "mmd/fs.hpp"
 
@@ -8,6 +9,7 @@ namespace mmd {
 
     class Stream : public Fs {
         FILE *file;
+        iconv_t conv;
     public:
         Stream(const char *path);
         ~Stream();

@@ -1,8 +1,11 @@
 #include "stream.hpp"
 
+static const int iconvSize = 64;
+
 namespace mmd {
 
     void Stream::read(size_t len, void *ptr) {
+        if (!len) return;
         int ret = fread(ptr, len, 1, file);
         CHECK_EQ(ret, 1) << "read failed!";
     }
@@ -55,18 +58,26 @@ namespace mmd {
     }
 
     void Stream::readUTF16(std::string &str) {
-        int len = readInt() / 2;
-        str.resize(len);
-        for (int i = 0; i < len; ++i) {
-            str[i] = readByte();
-            skip(1);
+        std::string temp;
+        readUTF8(temp);
+        char output[iconvSize];
+        char *out = output;
+        char *in = &temp[0];
+        size_t inLeft = temp.size();
+        size_t outLeft = iconvSize;
+        str.clear();
+        while (inLeft) {
+            iconv(conv, &in, &inLeft, &out, &outLeft);
+            CHECK(!inLeft || !outLeft) << "iconv failed!";
+            str.append(output, iconvSize - outLeft);
+            out = output, outLeft = iconvSize;
         }
     }
 
     void Stream::readUTF8(std::string &str) {
         int len = readInt();
         str.resize(len);
-        for (int i = 0; i < len; ++i) str[i] = readByte();
+        read(len, &str[0]);
     }
 
     void Stream::readStr(std::string &str, int text) {
@@ -113,12 +124,16 @@ namespace mmd {
 
     Stream::Stream(const char *path) {
         file = fopen(path, "r");
+        conv = iconv_open("UTF-8", "UTF-16LE");
+        CHECK_NQ(conv, (iconv_t)-1) << "iconv_open failed!";
         CHECK_NQ(file, NULL) << "Open file " << path << " failed!";
     }
 
     void Stream::close() {
         fclose(file);
         file = NULL;
+        int ret = iconv_close(conv);
+        CHECK_EQ(ret, 0) << "iconv_close failed!";
     }
 
     Stream::~Stream() {
