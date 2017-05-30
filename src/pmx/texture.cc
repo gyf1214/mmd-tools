@@ -5,7 +5,7 @@ namespace mmd {
     namespace pmx {
 
         void Texture::load(Fs *fs, Header *header) {
-            LOG << "load Texture";
+            LOG << "Load Texture";
             Stream *stream = (Stream *)fs;
             int n = stream->readInt();
             path.resize(n);
@@ -17,6 +17,7 @@ namespace mmd {
                 stream->readStr(path[i], header->text);
                 LOG << "texture " << i << ": " << path[i];
             }
+            LOG << "---------------------";
         }
 
         std::string &Texture::operator [](int index) {

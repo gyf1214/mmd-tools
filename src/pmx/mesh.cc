@@ -12,7 +12,7 @@ namespace mmd {
             for (int i = 0; i < header->additional; ++i) {
                 addition[i] = stream->readVec4();
             }
-            boneType = stream->readByte();
+            boneType = stream->readSByte();
             switch (boneType) {
                 case 0:
                 BDEF.bone[0] = stream->readIndex(header->bone);
@@ -59,7 +59,7 @@ namespace mmd {
         }
 
         void Mesh::load(Fs *fs, Header *header) {
-            LOG << "load Mesh";
+            LOG << "Load Mesh";
             Stream *stream = (Stream *)fs;
             int n = stream->readInt();
             vertex.resize(n);
@@ -77,6 +77,7 @@ namespace mmd {
             LOG << "---------------------";
             LOG << "vertices: " << vertex.size();
             LOG << "surfaces: " << surface.size();
+            LOG << "---------------------";
         }
 
     } /* pmx */

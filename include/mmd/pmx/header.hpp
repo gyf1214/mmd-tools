@@ -6,7 +6,7 @@
 namespace mmd {
     namespace pmx {
 
-        struct MMDAPI MMDPacked Header {
+        struct MMDAPI Header {
             char sign[4];
             float version;
             char globals;
@@ -18,6 +18,7 @@ namespace mmd {
             char bone;
             char morph;
             char rigid;
+            char end[0];
 
             void load(Fs *fs);
         };

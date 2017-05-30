@@ -11,7 +11,7 @@ namespace mmd {
             LOG << "Load PMX header";
 
             Stream *stream = (Stream *)fs;
-            stream->read(sizeof(Header), &this->sign[0]);
+            stream->read(end - sign, &this->sign[0]);
             CHECK_EQ(memcmp(this->sign, "PMX ", 4), 0) << "Invalid PMX header!";
             CHECK_EQ(globals, 8) << "Invalid PMX global count!";
             stream->skipStr();
@@ -31,6 +31,7 @@ namespace mmd {
             LOG << "bone: " << (int)bone;
             LOG << "morph: " << (int)morph;
             LOG << "rigid: " << (int)rigid;
+            LOG << "---------------------";
         }
 
     } /* pmx */
