@@ -19,5 +19,13 @@ namespace mmd {
             }
         }
 
+        std::string &Texture::operator [](int index) {
+            return path[index];
+        }
+
+        const std::string &Texture::operator [](int index) const {
+            return path[index];
+        }
+
     } /* pmx */
 } /* mmd */
