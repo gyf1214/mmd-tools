@@ -8,7 +8,7 @@ namespace mmd {
 
         struct MMDAPI Keyframe {
             std::string bone;
-            unsigned frame;
+            int frame;
             glm::vec3 position;
             glm::vec4 rotation;
             glm::mat4 curve;
