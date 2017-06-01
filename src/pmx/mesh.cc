@@ -14,9 +14,11 @@ namespace mmd {
                 addition[i] = stream->readVec4();
             }
             boneType = stream->readSByte();
+            memset(&SDEF, 0, sizeof(SDEF));
             switch (boneType) {
                 case 0:
                 BDEF.bone[0] = stream->readIndex(header->bone);
+                BDEF.weight[0] = 1.0f;
                 break;
 
                 case 1:
