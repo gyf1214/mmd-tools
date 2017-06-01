@@ -1,7 +1,6 @@
 #ifndef __STREAM
 #define __STREAM
 
-#include <iconv.h>
 #include "ext.hpp"
 #include "mmd/fs.hpp"
 
@@ -9,7 +8,7 @@ namespace mmd {
 
     class Stream : public Fs {
         FILE *file;
-        iconv_t conv;
+        iconv_t utf16, jis;
     public:
         Stream(const char *path);
         ~Stream();
@@ -32,8 +31,10 @@ namespace mmd {
         int readIndex(int size);
         unsigned readUIndex(int size);
         void skipStr();
+        void readJIS(int size, std::string &str);
         void readUTF16(std::string &str);
         void readUTF8(std::string &str);
+        void encode(iconv_t conv, std::string &temp, std::string &str);
         void readStr(std::string &str, int text);
 
         void close();

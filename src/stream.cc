@@ -60,6 +60,19 @@ namespace mmd {
     void Stream::readUTF16(std::string &str) {
         std::string temp;
         readUTF8(temp);
+        encode(utf16, temp, str);
+    }
+
+    void Stream::readJIS(int size, std::string &str) {
+        std::string temp;
+        temp.resize(size);
+        read(size, &temp[0]);
+        for (size = 0; temp[size]; ++size);
+        temp.resize(size);
+        encode(jis, temp, str);
+    }
+
+    void Stream::encode(iconv_t conv, std::string &temp, std::string &str) {
         char output[iconvSize];
         char *out = output;
         char *in = &temp[0];
@@ -124,16 +137,19 @@ namespace mmd {
 
     Stream::Stream(const char *path) {
         file = fopen(path, "r");
-        conv = iconv_open("UTF-8", "UTF-16LE");
-        CHECK_NQ(conv, (iconv_t)-1) << "iconv_open failed!";
+        utf16 = iconv_open("UTF-8", "UTF-16LE");
+        CHECK_NQ(utf16, (iconv_t)-1) << "iconv_open utf16 failed!";
+        jis = iconv_open("UTF8", "SHIFT_JIS");
+        CHECK_NQ(jis, (iconv_t)-1) << "iconv_open jis failed!";
         CHECK_NQ(file, NULL) << "Open file " << path << " failed!";
     }
 
     void Stream::close() {
         fclose(file);
         file = NULL;
-        int ret = iconv_close(conv);
-        CHECK_EQ(ret, 0) << "iconv_close failed!";
+        int ret = iconv_close(utf16);
+        int ret2 = iconv_close(jis);
+        CHECK(ret == 0 && ret2 == 0) << "iconv_close failed!";
     }
 
     Stream::~Stream() {

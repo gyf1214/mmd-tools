@@ -1,6 +1,5 @@
-#include "../ext.hpp"
-#include "../stream.hpp"
 #include "mmd/pmx/bone.hpp"
+#include "../stream.hpp"
 
 namespace mmd {
     namespace pmx {

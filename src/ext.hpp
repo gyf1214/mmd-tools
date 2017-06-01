@@ -2,6 +2,7 @@
 #define __EXT
 
 #include "mmd/common.hpp"
+#include <iconv.h>
 
 using glm::vec2;
 using glm::vec3;

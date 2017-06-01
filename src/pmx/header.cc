@@ -1,6 +1,5 @@
-#include "../ext.hpp"
-#include "../stream.hpp"
 #include "mmd/pmx/header.hpp"
+#include "../stream.hpp"
 
 using namespace std;
 
