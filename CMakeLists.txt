@@ -6,9 +6,6 @@ set(LIBRARY_OUTPUT_PATH lib)
 
 set(LIB_TARGET mmd-tools)
 
-set(LIB_VERSION 0.1.0)
-set(LIB_SOVERSION 0)
-
 aux_source_directory(src SRCS)
 aux_source_directory(src/pmx SRCS)
 aux_source_directory(src/vmd SRCS)
@@ -27,5 +24,3 @@ find_library(ICONV_LIB iconv)
 target_link_libraries(${LIB_TARGET} ${ICONV_LIB})
 target_link_libraries(test_pmx ${LIB_TARGET})
 target_link_libraries(test_vmd ${LIB_TARGET})
-
-set_target_properties(${LIB_TARGET} PROPERTIES VERSION ${LIB_VERSION} SOVERSION ${LIB_SOVERSION})
