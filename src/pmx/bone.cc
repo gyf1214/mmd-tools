@@ -72,6 +72,7 @@ namespace mmd {
                     LOG << "IK link " << i << ": " << IK.links[i].bone;
 
                     int t = stream->readByte();
+                    IK.links[i].limit = t;
                     if (t) {
                         IK.links[i].min = stream->readVec3();
                         IK.links[i].max = stream->readVec3();
