@@ -15,7 +15,7 @@
 #define MMDExport __attribute__((visibility("default")))
 #define MMDImport __attribute__((visibility("default")))
 
-#ifdef Shared
+#ifdef MMDShared
 #define MMDAPI MMDExport
 #else
 #define MMDAPI MMDImport
