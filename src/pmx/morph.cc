@@ -6,7 +6,7 @@ namespace mmd {
 
         void Morph::load(Fs *fs, Header *header) {
             Stream *stream = (Stream *)fs;
-            stream->readUTF16(name);
+            stream->readStr(name, header->text);
             stream->skipStr();
             panel = stream->readSByte();
             type = (MorphType)stream->readByte();

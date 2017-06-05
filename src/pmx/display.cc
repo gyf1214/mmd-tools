@@ -7,7 +7,7 @@ namespace mmd {
         void Display::load(Fs *fs, Header *header) {
             Stream *stream = (Stream *)fs;
 
-            stream->readUTF16(name);
+            stream->readStr(name, header->text);
             stream->skipStr();
             flag = stream->readSByte();
             int n = stream->readInt();
