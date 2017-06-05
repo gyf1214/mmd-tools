@@ -34,6 +34,7 @@ namespace mmd {
             loadArray(bones, stream, &header, "Bone");
             loadArray(morphs, stream, &header, "Morph");
             loadArray(displays, stream, &header, "Display");
+            loadArray(rigids, stream, &header, "Rigid");
         }
 
     } /* pmx */

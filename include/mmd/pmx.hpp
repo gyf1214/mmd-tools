@@ -9,6 +9,7 @@
 #include "pmx/bone.hpp"
 #include "pmx/morph.hpp"
 #include "pmx/display.hpp"
+#include "pmx/rigid.hpp"
 
 namespace mmd {
     namespace pmx {
@@ -21,6 +22,7 @@ namespace mmd {
             std::vector<Bone> bones;
             std::vector<Morph> morphs;
             std::vector<Display> displays;
+            std::vector<Rigid> rigids;
 
             void load(Fs *fs);
         };
