@@ -10,6 +10,7 @@
 #include "pmx/morph.hpp"
 #include "pmx/display.hpp"
 #include "pmx/rigid.hpp"
+#include "pmx/joint.hpp"
 
 namespace mmd {
     namespace pmx {
@@ -23,6 +24,7 @@ namespace mmd {
             std::vector<Morph> morphs;
             std::vector<Display> displays;
             std::vector<Rigid> rigids;
+            std::vector<Joint> joints;
 
             void load(Fs *fs);
         };
