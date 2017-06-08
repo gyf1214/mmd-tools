@@ -136,10 +136,10 @@ namespace mmd {
     }
 
     Stream::Stream(const char *path) {
-        file = fopen(path, "r");
+        file = fopen(path, "rb");
         utf16 = iconv_open("UTF-8", "UTF-16LE");
         CHECK_NQ(utf16, (iconv_t)-1) << "iconv_open utf16 failed!";
-        jis = iconv_open("UTF8", "SHIFT_JIS");
+        jis = iconv_open("UTF-8", "SHIFT_JIS");
         CHECK_NQ(jis, (iconv_t)-1) << "iconv_open jis failed!";
         CHECK_NQ(file, NULL) << "Open file " << path << " failed!";
     }
