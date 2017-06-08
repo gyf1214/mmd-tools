@@ -24,3 +24,13 @@ find_library(ICONV_LIB iconv)
 target_link_libraries(${LIB_TARGET} ${ICONV_LIB})
 target_link_libraries(test_pmx ${LIB_TARGET})
 target_link_libraries(test_vmd ${LIB_TARGET})
+
+if (WIN32)
+add_custom_command(TARGET test_pmx POST_BUILD
+             COMMAND ${CMAKE_COMMAND} -E copy_if_different
+             $<TARGET_FILE:${LIB_TARGET}> $<TARGET_FILE_DIR:test_pmx>)
+
+add_custom_command(TARGET test_pmx POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_FILE:${LIB_TARGET}> $<TARGET_FILE_DIR:test_pmx>)
+endif(WIN32)
