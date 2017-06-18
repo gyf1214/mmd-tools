@@ -14,7 +14,7 @@ namespace mmd {
             int n = stream->readInt();
             offsets.resize(n);
             for (int i = 0; i < n; ++i) {
-                offsets[i].index = stream->readIndex(header->vertex);
+                offsets[i].index = stream->readUIndex(header->vertex);
                 offsets[i].translate = stream->readVec3();
             }
 
